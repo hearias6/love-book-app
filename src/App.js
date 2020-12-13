@@ -1,25 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import BookList from './components/BookList'
+import MainTitle from './components/MainTitle'
+import books from './repository/books.json'
+import FormBook from './components/FormBook';
+
+class App extends React.Component {
+
+  state={
+    books: books,
+    createBook : false,
+    showListBooks : true,
+  }
+
+  render(){
+    return (
+      <main className="App container">        
+        <MainTitle title="Love Books" />
+        <button className="button is-success">
+          New
+        </button>                    
+        {this.state.createBook ? <FormBook /> : null}
+        {this.state.showListBooks ? <BookList books={books} /> : null} 
+      </main>  
+    );
+  }
 }
 
 export default App;
